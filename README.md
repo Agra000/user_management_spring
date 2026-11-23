@@ -29,7 +29,7 @@ What it does:
 1. Open IntelliJ → **File → Open...** → choose this project folder (the one with `pom.xml`).
 2. Wait until the loading bar at the bottom is finished. IntelliJ downloads all libraries.
 3. Go to **File → Project Structure → Project** and make sure **SDK = 21**.
-4. If IntelliJ shows *"Lombok requires enabled annotation processing"*, click **Enable**.
+4. If IntelliJ shows _"Lombok requires enabled annotation processing"_, click **Enable**.
 
 ### Step 2 — Create the `resources` folder and `application.yml`
 
@@ -40,11 +40,11 @@ The config file is **not** in the repo, so i'll give it to you.
 
 #### What you need to change in `application.yml`
 
-| Line | What to put |
-|---|---|
-| `url` | Change `test_spring` at the end if your database has a different name. |
-| `username` | Your PostgreSQL username (usually `postgres`). |
-| `password` | **Your PostgreSQL password.** |
+| Line       | What to put                                                         |
+| ---------- | ------------------------------------------------------------------- |
+| `url`      | Change `users_db` at the end if your database has a different name. |
+| `username` | Your PostgreSQL username (usually `postgres`).                      |
+| `password` | **Your PostgreSQL password.**                                       |
 
 You can leave the Redis and RabbitMQ settings as they are. They match `docker-compose.yml`.
 
@@ -54,7 +54,7 @@ You can leave the Redis and RabbitMQ settings as they are. They match `docker-co
 
 This starts **Redis** and **RabbitMQ**.
 
-1. Open **Docker Desktop** and wait until it says *Engine running*.
+1. Open **Docker Desktop** and wait until it says _Engine running_.
 2. In IntelliJ, open the **Terminal** (`Alt + F12`) and run:
 
 ```bash
@@ -140,11 +140,11 @@ To stop it, press the red **■** button.
 
 Base URL: `http://localhost:8080`
 
-| Method | URL | Who can use it |
-|---|---|---|
-| `POST` | `/api/auth/login` | Anyone |
-| `POST` | `/api/auth/regist-user` | ADMIN only (needs token) |
-| `PUT` | `/api/auth/change-password` | Any logged-in user (needs token) |
+| Method | URL                         | Who can use it                   |
+| ------ | --------------------------- | -------------------------------- |
+| `POST` | `/api/auth/login`           | Anyone                           |
+| `POST` | `/api/auth/regist-user`     | ADMIN only (needs token)         |
+| `PUT`  | `/api/auth/change-password` | Any logged-in user (needs token) |
 
 ### How to use the token in Postman
 
@@ -299,7 +299,7 @@ KEYS *
 
 You should see the cached login email data.
 
-You can also open **http://localhost:5540** (RedisInsight) → *Add Redis database* → host `redis`, port `6379`.
+You can also open **http://localhost:5540** (RedisInsight) → _Add Redis database_ → host `redis`, port `6379`.
 
 To clear the cache: `docker exec redis redis-cli FLUSHDB`
 
@@ -315,12 +315,12 @@ Open **http://localhost:15672** and log in with `guest` / `guest`.
 
 ## Common problems
 
-| Problem | What to do |
-|---|---|
-| Red imports / `Cannot resolve symbol` | Open `pom.xml` and click the small **"m"** reload icon at the top-right. |
-| `Could not resolve placeholder 'app...'` | `application.yml` is missing, in the wrong folder, or a key is misspelled. It must be at `src/main/resources/application.yml`. |
-| `Unable to connect to Redis` / `Connection refused` | Docker Desktop is not running. Open it, then run `docker compose up -d`. |
-| `password authentication failed` | Wrong PostgreSQL username or password in `application.yml`. |
-| `database "test_spring" does not exist` | Create the database first (Step 4). |
-| Login fails right after start | `app.jwt.secret` is shorter than 32 characters. |
-| `Port 8080 was already in use` | The app is already running. Press **■** first. |
+| Problem                                             | What to do                                                                                                                     |
+| --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| Red imports / `Cannot resolve symbol`               | Open `pom.xml` and click the small **"m"** reload icon at the top-right.                                                       |
+| `Could not resolve placeholder 'app...'`            | `application.yml` is missing, in the wrong folder, or a key is misspelled. It must be at `src/main/resources/application.yml`. |
+| `Unable to connect to Redis` / `Connection refused` | Docker Desktop is not running. Open it, then run `docker compose up -d`.                                                       |
+| `password authentication failed`                    | Wrong PostgreSQL username or password in `application.yml`.                                                                    |
+| `database "users_db" does not exist`                | Create the database first (Step 4).                                                                                            |
+| Login fails right after start                       | `app.jwt.secret` is shorter than 32 characters.                                                                                |
+| `Port 8080 was already in use`                      | The app is already running. Press **■** first.                                                                                 |
