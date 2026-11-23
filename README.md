@@ -36,7 +36,7 @@ What it does:
 The config file is **not** in the repo, so i'll give it to you.
 
 1. In the project panel, right-click `src/main` → **New → Directory** → type `resources`.
-2. Paste the file that i give to the resource folder
+2. Paste the file (application.yml) that i give to the resource folder
 
 #### What you need to change in `application.yml`
 
