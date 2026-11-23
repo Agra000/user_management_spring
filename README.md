@@ -73,41 +73,7 @@ You only need to do this once. The containers start again automatically every ti
 
 ### Step 4 — Prepare the database
 
-Open pgAdmin or DBeaver, create a database called `users_db`, then run this SQL inside it:
-
-```sql
-CREATE TABLE public.roles (
-    id               INTEGER PRIMARY KEY,
-    role_name        VARCHAR(25) NOT NULL,
-    role_description VARCHAR(255),
-    created_at       TIMESTAMP DEFAULT NOW()
-);
-
-INSERT INTO public.roles (id, role_name, role_description, created_at) VALUES
-(1, 'ADMIN', 'User Manager', NOW()),
-(2, 'USER', 'Public User', NOW());
-
-CREATE TABLE public.users (
-    id         UUID PRIMARY KEY,
-    full_name  VARCHAR(150),
-    user_name  VARCHAR(100) NOT NULL,
-    password   TEXT NOT NULL,
-    email      VARCHAR(150) NOT NULL,
-    created_at TIMESTAMP DEFAULT NOW(),
-    role_id    INTEGER NOT NULL REFERENCES public.roles(id)
-);
-
-INSERT INTO public.users (id, full_name, user_name, password, email, role_id, created_at)
-VALUES (
-    '9b4a9df6-d03f-40b1-82e5-1193d6d4a1e9',
-    'PCA Admin User',
-    'pca_admin_user',
-    'e99a18c428cb38d5f260853678922e03', -- MD5 of 'abc123'
-    'pca_admin_user@yopmail.com',
-    1,
-    NOW()
-);
-```
+Open pgAdmin or DBeaver, create a database called `users_db`, then run the SQL inside folder that i gave to you.
 
 The first admin can log in with **`pca_admin_user@yopmail.com`** / **`abc123`**.
 
